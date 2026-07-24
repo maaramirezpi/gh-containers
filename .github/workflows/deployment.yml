@@ -5,9 +5,12 @@ on:
   - workflow_dispatch
 
 jobs:
-  test:
+  eploy:
+    needs: test
     runs-on: ubuntu-latest
     steps:
+      - name: Output event data
+        run: echo "$ {{ toJson(github.event )}}"
       - name: Get code
         uses: actions/checkout@v3
       - name: Install nodejs
@@ -17,20 +20,7 @@ jobs:
       - name: Install dependencies
         run: npm ci
       - name: Run tests
-        run: npm test
-  
-  deploy:
-    needs: test
-    runs-on: ubuntu-latest
-    steps:
-      - name: Get code
-        uses: actions/checkout@v3
-      - name: Install nodejs
-        uses: actions/setup-node@v3
-        with:
-          node-version: 18
-      - name: Install dependencies
-        run: npm ci
+        run: npm run test
       - name: Build project
         run: npm run build
       - name: deploy
