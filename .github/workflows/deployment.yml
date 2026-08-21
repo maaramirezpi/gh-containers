@@ -8,6 +8,10 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
+    container:
+      image: node:16
+
+
     steps:
       - name: Output event data
         run: echo "$ {{ toJson(github.event )}}"
