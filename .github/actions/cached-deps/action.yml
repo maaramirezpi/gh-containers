@@ -9,7 +9,7 @@ inputs:
 outputs:
   used-cache:
     description: Cache was used
-    value: ${{ steps.install.cache }}
+    value: ${{ steps.install.outputs.cache }}
 runs:
   using: composite
   steps:
