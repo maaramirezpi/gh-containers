@@ -66,7 +66,7 @@ jobs:
       - name: Output contents
         run: ls
       - name: giving aws permissions
-        uses: aws-actions/configure-aws-credentials
+        uses: aws-actions/configure-aws-credentials@v6
         with:
           role-to-assume: arn:aws:iam::905701528469:role/gh-actions-role
           aws-region: us-east-1
